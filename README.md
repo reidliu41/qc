@@ -14,7 +14,7 @@ The script which is helping to switch to the different sosreport or the system d
 
 ## Implementation
 
-1. Download the repo, apply executable permissions to the script and move `quick_cd_sosdir.sh` and `qck` into the ENV PATH.
+1. Download the repo, apply executable permissions to the script and move `quick_cd_sosdir.sh` and `qck` into the sysetem ENV search PATH(e.g. /usr/local/bin).
 
 ```
 cd qc
@@ -23,6 +23,21 @@ chmod +x qck
 chmod +x set_bash_profile.sh
 
 sh set_bash_profile.sh
+source ~/.bash_profile
+```
+
+2. Or quick set with below:
+
+```
+mkdir ~/bin
+curl --insecure  -L https://raw.githubusercontent.com/reidliu41/qc/main/quick_cd_sosdir.sh -o ~/bin/quick_cd_sosdir.sh
+curl --insecure -L https://raw.githubusercontent.com/reidliu41/qc/main/qck -o ~/bin/qck
+curl --insecure -L https://raw.githubusercontent.com/reidliu41/qc/main/set_bash_profile.sh -o ~/bin/set_bash_profile.sh
+chmod +x ~/bin/qck
+chmod +x ~/bin/quick_cd_sosdir.sh
+chmod +x ~/bin/set_bash_profile.sh
+sh  ~/bin/set_bash_profile.sh
+source ~/.bash_profile
 ```
 
 ## Script Usage
