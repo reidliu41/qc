@@ -1,0 +1,49 @@
+#!/bin/bash
+###################################################################################
+# This file is part of qc, providing intelligent qc help check 
+#
+# Latest version: <https://github.com/reidliu41/qc>
+#
+# Copyright : Copyright (c) 2022 Reid Liu <guliu@redhat.com>
+###################################################################################
+FIRST_ARG=$1
+
+filter_help_output(){
+	FILTER_ARG=$1
+	LINE_COUNT=$2
+	quick_cd_sosdir.sh -h|grep $FILTER_ARG -A $LINE_COUNT
+}
+
+
+if [ $# -eq 0 ]
+then
+	echo "===============================================
+To search the keyword from qc -h output quickly
+  Usage: qck keyword
+    e.g. qck systemd
+Options:
+     opt    options
+    scmd    sos_commands path
+     log    var log path
+     etc    etc path
+ keyword    qc -h|grep keyword
+==============================================="
+	exit
+fi
+case "$FIRST_ARG" in
+	opt)
+		filter_help_output Options: 11
+		;;
+	scmd)
+		filter_help_output sos_commands: 96
+		;;
+	log)
+		filter_help_output logs: 19
+		;;
+	etc)
+		filter_help_output etc: 29
+		;;
+	*)
+       quick_cd_sosdir.sh -h|grep $FIRST_ARG
+		;;
+esac
